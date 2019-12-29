@@ -4,7 +4,7 @@
 #include <ncurses.h>
 #include <stdlib.h>
 
-int* config()
+int* configWH()//Configure Width and HEIGHT and return them as a pointer
 {
     static int size[1];
     puts("Hi welcome to ASCII STUDIO, here you can make ASCII art and make some \
@@ -17,7 +17,16 @@ int* config()
     return size;
 }
 
-void start_ncurses()
+short configt()//Configure Time and return it
+{
+    static short time;
+    puts("How many seconds to sleep between files?");
+    scanf("%d", &time);
+
+    return time;
+}
+
+void start_ncurses()//Just casual functions to be able to draw on screen
 {
     initscr();
     cbreak();
@@ -27,6 +36,7 @@ void start_ncurses()
     start_color();
 }
 
+//feed it the 2d array and it will put in every value a space
 void clear_table(int *table, int WIDTH, int HEIGHT)
 {
     for (int i = 0; i < WIDTH * HEIGHT; i++)

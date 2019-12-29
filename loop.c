@@ -1,4 +1,6 @@
-#include "funcs.h"
+#include "funcs.h" 
+
+//If you don't understand some ncurses you should learn it
 
 int main(int argc,char *argv[])
 {
@@ -6,10 +8,12 @@ int main(int argc,char *argv[])
 
     if(argc > 1)
     {
+        short time = configt();
         start_ncurses();
         char buff[200];
-        int count = 1;
-
+        short count = 1;
+        /*A loop to animate between file,basically it opens the file that you pass them by read
+        them and apply color effects,finally it sleep for a second then moves to another file*/
         while (1)
         {
             fp = fopen(argv[count], "r");
@@ -26,7 +30,7 @@ int main(int argc,char *argv[])
                 }
             }
             refresh();
-            sleep(1);
+            sleep(time);
             count++;
             if(count == argc) count = 1;
             clear();
@@ -36,7 +40,7 @@ int main(int argc,char *argv[])
     else
     {
         int *p;
-        p = config();
+        p = configWH();//It shows a startup message and asks you for WIDTH and HEIGHT and return a pointer
         start_ncurses();
         
 
@@ -52,13 +56,13 @@ int main(int argc,char *argv[])
 
         int input;
         short emode = 0; //Erase mode
-        int x=0;int y=0;
+        short x=0;short y=0;
         
-        int chars[WIDTH][HEIGHT];
+        int chars[WIDTH][HEIGHT];//2d array for storing your art and what you are typing
 
         clear_table(&chars[0][0], WIDTH, HEIGHT);
 
-        while(input = getch())
+        while(input = getch())//Getting input from user using a while loop
         {  
             switch (input)
             {
@@ -87,7 +91,7 @@ int main(int argc,char *argv[])
                 case KEY_BACKSPACE:
                     emode = (emode == 0) ? 1 : 0;
                     break;
-                case 'c':
+                case 'c'://To change a char if you wish
                     move(0, 0);
                     addstr("Choose you char:");
                     refresh();
@@ -108,7 +112,7 @@ int main(int argc,char *argv[])
                     addch(' ');
                     bg = getch();
                     refresh();
-                    for(int i = 0;i < 45;i++)
+                    for(int i = 0;i < 45;i++)//Move the cursor to 0,0 then clears the message
                     {
                         move(0, i);
                         addch(' ');
@@ -121,7 +125,7 @@ int main(int argc,char *argv[])
                     init_pair(1, fg , bg);
                     attron(COLOR_PAIR(1));
                     break;
-                case 's':
+                case 's'://To save a file after hard work,it also quits
                     move(0, 0);
                     char filename[10];
                     addstr("Provide a filename to save");
@@ -142,21 +146,8 @@ int main(int argc,char *argv[])
                     endwin();
                     exit(0);
                     break;
-                case 'p':
-                    clear();
-                    move(0, 0);
-                    for (int i = 0; i < WIDTH; i++)
-                    {
-                        for (int j = 0; j < HEIGHT; j++)
-                        {
-                            addch(chars[i][j]);
-                            move(j , i);
-                        }
-                    }
-                    refresh();
-                    break;
-            }
-            if(emode == 0)
+            }                                          //backspave
+            if(emode == 0)//Checking if the user pressed <-- ,however if its zero it means no erase
             {
                 addch(ch);
                 move(y, x);
