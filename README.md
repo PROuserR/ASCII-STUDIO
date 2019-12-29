@@ -1,4 +1,4 @@
-#ASCII STUDIO
+# ASCII STUDIO
 
 Welcome to ASCII-STUDIO here,I made this project in my free time escaping from college, I will help you understand this project and the code:
 <br/>1- This project is clearly written in C and it uses ncurses lib for its graphics and it's compiled using gcc (on linux)
