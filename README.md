@@ -5,7 +5,7 @@ Welcome to ASCII-STUDIO here,I made this project in my free time escaping from c
 <br/>3- The main code is written in loop.c and funcs.h is second file to provide some little functions
 <br/>4- If you are intrested in code open it.It's simple and it's all explained
 
-<p>                   __________
+<body>                   __________
             .-"""-.   | ASCII  |
            '       \  | STUDIO |
           |,.  ,-.  | |___:)___|
@@ -24,4 +24,4 @@ Welcome to ASCII-STUDIO here,I made this project in my free time escaping from c
 |         `.    __.j         )
 |__        |--""___|      ,-'
    `"--...,+""""   `._,.-' 
-</p>
+</body>
